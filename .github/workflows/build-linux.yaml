@@ -38,6 +38,7 @@ jobs:
 #        uses: mxschmitt/action-tmate@v3
       - run: chmod +x ./DIST-unix64/QuteScoop ./DIST-unix64/QuteScoop.sh
       - run: ldd ./DIST-unix64/QuteScoop
+      - run: ldd ./DIST-unix64/QuteScoop | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' ./DIST-unix64/
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
