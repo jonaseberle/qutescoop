@@ -37,6 +37,7 @@ jobs:
 #      - name: Setup tmate session
 #        uses: mxschmitt/action-tmate@v3
       - run: chmod +x ./DIST-unix64/QuteScoop ./DIST-unix64/QuteScoop.sh
+      - run: ldd ./DIST-unix64/QuteScoop
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
