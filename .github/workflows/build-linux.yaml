@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,17 +20,17 @@ jobs:
       - run: sudo DEBIAN_FRONTEND=noninteractive apt-get update
       - name: Install GLU
         run: sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libglu1-mesa-dev
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: ${{ runner.os }}-QtCache
+#      - name: Cache Qt
+#        id: cache-qt
+#        uses: actions/cache@v1
+#        with:
+#          path: ../Qt
+#          key: ${{ runner.os }}-QtCache
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2.9.0
+        uses: jurplel/install-qt-action@v2
         with:
-          version: '5.12.8'
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          version: '5.15.2'
+#          cached: ${{ steps.cache-qt.outputs.cache-hit }}
       - run: qmake -config release QuteScoop.pro
       - run: make -j$(nproc)
       - run: make install
