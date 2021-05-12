@@ -30,7 +30,8 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           version: '5.15.2'
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          cached: false
+#${{ steps.cache-qt.outputs.cache-hit }}
       - run: cd ../Qt && ./configure -static -prefix ../Qt && make
       - run: qmake -config release QuteScoop.pro
       - run: make -j$(nproc)
