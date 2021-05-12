@@ -50,7 +50,7 @@ jobs:
       - run: cp "$Qt5_Dir"/lib/libQt5DBus.so.5 "$Qt5_Dir"/lib/libQt5XcbQpa.so.5 ./DIST-unix64/lib/
       - run: mkdir ./DIST-unix64/platforms
       - run: cp "$QT_PLUGIN_PATH"/platforms/libqxcb*.so* \
-                ./DIST-unix64/platforms/
+                ./DIST-unix64/platforms
       # https://github.com/actions/upload-artifact#maintaining-file-permissions-and-case-sensitive-files
       - name: 'Tar files'
         run: tar --directory=./DIST-unix64 -cvf QuteScoop-Linux-${{ steps.tag.outputs.SOURCE_NAME }}-${{ github.sha }}.tar ./
