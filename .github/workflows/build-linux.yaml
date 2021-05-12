@@ -46,7 +46,7 @@ jobs:
       - run: chmod +x ./DIST-unix64/QuteScoop ./DIST-unix64/QuteScoop.sh
       - run: ldd ./DIST-unix64/QuteScoop
 #      - run: ldd ./DIST-unix64/QuteScoop | grep "=> /" | awk '{print $3}' | grep -E 'libQt|libgcc' | xargs -I '{}' cp -v '{}' ./DIST-unix64/
-      - run: cp /lib/x86_64-linux-gnu/libgcc_s.so* /lib/x86_64-linux-gnu/libc.so* "$QT_PLUGIN_PATH"/platforms/libqxcb*.so* "$QT_PLUGIN_PATH"/platforms/imageformats/*.so* "$Qt5_Dir"/lib/libQt*.so* "$Qt5_Dir"/lib/libicu*.so* ./ 
+      - run: cp /lib/x86_64-linux-gnu/libgcc_s.so* /lib/x86_64-linux-gnu/libc.so* "$QT_PLUGIN_PATH"/platforms/libqxcb*.so* "$Qt5_Dir"/lib/libQt*.so* "$Qt5_Dir"/lib/libicu*.so* ./ 
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
