@@ -34,6 +34,10 @@ jobs:
 #${{ steps.cache-qt.outputs.cache-hit }}
 #      - run: cd ../Qt && ./configure -static -prefix ../Qt && make
       - run: env
+# Qt5_Dir=/home/runner/work/qutescoop/Qt/5.15.2/gcc_64
+# QT_PLUGIN_PATH=/home/runner/work/qutescoop/Qt/5.15.2/gcc_64/plugins
+      - run: ls $Qt5_Dir
+      - run: ls $QT_PLUGIN_PATH
       - run: qmake -config release QuteScoop.pro
       - run: make -j$(nproc)
       - run: make install
