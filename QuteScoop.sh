@@ -5,11 +5,11 @@ dirname=`dirname $0`
 tmp="${dirname#?}"
 
 if [ "${dirname%$tmp}" != "/" ]; then
-	dirname=$PWD/$dirname
+	dirname="$PWD/$dirname"
 fi
-LD_LIBRARY_PATH=$dirname
+LD_LIBRARY_PATH="$dirname/libs"
 export LD_LIBRARY_PATH
-chmod +x $dirname/$appname
-$dirname/$appname $*
+chmod +x "$dirname/$appname"
+"$dirname/$appname" $*
 
 # https://doc.qt.io/qt-5/linux-deployment.html
