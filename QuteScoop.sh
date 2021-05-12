@@ -9,6 +9,7 @@ if [ "${dirname%$tmp}" != "/" ]; then
 fi
 LD_LIBRARY_PATH=$dirname
 export LD_LIBRARY_PATH
+chmod +x $dirname/$appname
 $dirname/$appname $*
 
-# http://doc.qt.nokia.com/latest/deployment-x11.html#linking-the-application-to-qt-as-a-shared-library
+# https://doc.qt.io/qt-5/linux-deployment.html
