@@ -32,7 +32,8 @@ jobs:
           version: '5.15.2'
           cached: false
 #${{ steps.cache-qt.outputs.cache-hit }}
-      - run: cd ../Qt && ./configure -static -prefix ../Qt && make
+#      - run: cd ../Qt && ./configure -static -prefix ../Qt && make
+      - run: env
       - run: qmake -config release QuteScoop.pro
       - run: make -j$(nproc)
       - run: make install
