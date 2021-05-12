@@ -36,8 +36,9 @@ jobs:
       - run: env
 # Qt5_Dir=/home/runner/work/qutescoop/Qt/5.15.2/gcc_64
 # QT_PLUGIN_PATH=/home/runner/work/qutescoop/Qt/5.15.2/gcc_64/plugins
-      - run: ls $Qt5_Dir
-      - run: ls $QT_PLUGIN_PATH
+      - run: ls "$Qt5_Dir"
+      - run: ls "$Qt5_Dir"/lib/
+      - run: ls "$QT_PLUGIN_PATH"/*
       - run: qmake -config release QuteScoop.pro
       - run: make -j$(nproc)
       - run: make install
@@ -46,6 +47,7 @@ jobs:
       - run: chmod +x ./DIST-unix64/QuteScoop ./DIST-unix64/QuteScoop.sh
       - run: ldd ./DIST-unix64/QuteScoop
 #      - run: ldd ./DIST-unix64/QuteScoop | grep "=> /" | awk '{print $3}' | grep -E 'libQt|libgcc' | xargs -I '{}' cp -v '{}' ./DIST-unix64/
+      - run: cp "$QT_PLUGIN_DIR"/platforms/libqxcb* "$QT_PLUGIN_DIR"/platforms/imageformats/* "$Qt5_Dir"/lib/libQt* ./ 
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
