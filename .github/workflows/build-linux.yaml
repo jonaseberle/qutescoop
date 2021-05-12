@@ -45,8 +45,8 @@ jobs:
 #        uses: mxschmitt/action-tmate@v3
       - run: chmod +x ./DIST-unix64/QuteScoop ./DIST-unix64/QuteScoop.sh
       - run: ldd ./DIST-unix64/QuteScoop
-      - run: ldd ./DIST-unix64/QuteScoop | grep "=> /" | awk '{print $3}' | grep -E 'libQt|libgcc|libicu|libGL' | xargs -I '{}' cp -v '{}' ./DIST-unix64/
-      - run: cp "$Qt5_Dir"/lib/libQt5XcbQpa.so.5 ./DIST-unix64/
+      - run: ldd ./DIST-unix64/QuteScoop | grep "=> /" | awk '{print $3}' | grep -E 'libQt|libgcc|libstdc|libicu|libGL' | xargs -I '{}' cp -v '{}' ./DIST-unix64/
+      - run: cp "$Qt5_Dir"/lib/libQt5DBus.so.5 "$Qt5_Dir"/lib/libQt5XcbQpa.so.5 ./DIST-unix64/
       - run: |
           mkdir ./DIST-unix64/platforms \
              && cp "$QT_PLUGIN_PATH"/platforms/libqxcb*.so* \
