@@ -108,18 +108,6 @@
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QPushButton" name="pbAirportDetails">
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>LOWW (Vienna, AT)</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>

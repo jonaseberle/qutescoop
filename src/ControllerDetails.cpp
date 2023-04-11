@@ -30,7 +30,6 @@ ControllerDetails::ControllerDetails(QWidget *parent):
         _controller(0) {
     setupUi(this);
     setWindowFlags(windowFlags() ^= Qt::WindowContextHelpButtonHint);
-//    setWindowFlags(Qt::Tool);
 
     connect(buttonShowOnMap, &QAbstractButton::clicked, this, &ClientDetails::showOnMap);
 
@@ -73,9 +72,6 @@ void ControllerDetails::refresh(Controller *newController) {
     }
     lblFrequency->setText(frequencyHtml);
 
-    pbAirportDetails->setVisible(_controller->airport() != 0);
-    pbAirportDetails->setText(   _controller->airport() != 0? _controller->airport()->toolTip(): "");
-
     QString atis = QString("<code style='margin: 50px; padding: 50px'>%1</code>").arg(
         QString(_controller->atisMessage.toHtmlEscaped()).replace("\n", "<br>")
     );
@@ -83,8 +79,6 @@ void ControllerDetails::refresh(Controller *newController) {
         atis += QString("<p><i>QuteScoop assumes from this information that this controller will be online until %1z</i></p>")
             .arg(_controller->assumeOnlineUntil.toString("HHmm"));
     lblAtis->setText(atis);
-    // This does not seem to be necessary. Changing the content changes the size hint and triggers a window resize.
-    // lblAtis->adjustSize(); // ensure auto-resize
 
     gbAtis->setTitle(_controller->label.endsWith("_ATIS")? "ATIS" : "Controller info");
 
@@ -100,19 +94,11 @@ void ControllerDetails::refresh(Controller *newController) {
 
     // enable if we know position
     buttonShowOnMap->setDisabled(qFuzzyIsNull(_controller->lat) && qFuzzyIsNull(_controller->lon));
-
-    // @see https://github.com/qutescoop/qutescoop/issues/124
-    // adjustSize();
 }
 
 void ControllerDetails::on_buttonAddFriend_clicked() {
     friendClicked();
     refresh();
-}
-
-void ControllerDetails::on_pbAirportDetails_clicked() {
-    if (_controller->airport() != 0)
-        _controller->airport()->showDetailsDialog();
 }
 
 void ControllerDetails::closeEvent(QCloseEvent *event) {
@@ -128,4 +114,3 @@ void ControllerDetails::on_pbAlias_clicked()
         refresh();
     }
 }
-
